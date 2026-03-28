@@ -423,9 +423,7 @@ def spider_schemas(conn, refresh=False):
             misses += 1
             print(f"miss", end="", flush=True)
 
-        # If no lexicon_url yet, try Lexicon Garden page via autocomplete
-        if not lexicon_url and authority not in OFFICIAL_AUTHORITIES:
-            lexicon_url = f"https://lexidex.bsky.dev/lexicon/{nsid}"
+        # Only store real lexicon_url from Lexicon Garden or GitHub — don't generate fake URLs
 
         # Re-categorize with description info
         category, tags = categorize_nsid(nsid, description, schema_type)

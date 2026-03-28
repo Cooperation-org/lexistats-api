@@ -594,7 +594,7 @@ DASHBOARD_HTML = """\
 </head>
 <body>
     <div class="topbar">
-        <div class="topbar-left"><h1>LexiStats</h1> <span style="font-size:0.85em;color:#8b949e;margin-left:12px;"><b style="color:#c9d1d9">Stats</b> · <a href="/feed" style="color:#8b949e">Live Feed</a> · <a href="/chooser" style="color:#8b949e">Chooser</a> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Garden ↗</a></span></div>
+        <div class="topbar-left"><h1>LexiStats</h1> <span style="font-size:0.85em;color:#8b949e;margin-left:12px;"><b style="color:#c9d1d9">Stats</b> · <a href="/feed" style="color:#8b949e">Live Feed</a> · <a href="/chooser" style="color:#8b949e">Chooser</a> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Nick's Garden ↗</a></span></div>
         <div class="topbar-right"><a href="https://linkedtrust.us"><img src="https://linkedtrust.us/static/img/logo.523bee24fbc7.svg" alt="">by LinkedTrust.us</a></div>
     </div>
     <p class="subtitle">ATProto Lexicon Usage from Jetstream</p>
@@ -630,7 +630,8 @@ DASHBOARD_HTML = """\
 
     <footer>
         Data sampled from <a href="https://github.com/bluesky-social/jetstream">Jetstream</a>.
-        <a href="https://github.com/Cooperation-org/lexistats">Source on GitHub</a>.
+        <a href="https://github.com/Cooperation-org/lexistats">Sampler</a> |
+        <a href="https://github.com/Cooperation-org/lexistats-api">API</a> on GitHub.
         By <a href="https://linkedtrust.us">LinkedTrust.us</a>
     </footer>
 
@@ -1119,7 +1120,7 @@ CHOOSER_HTML = """\
 </head>
 <body>
     <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div style="display:flex;align-items:center;gap:12px;"><h1><a href="/" style="text-decoration:none; color: #58a6ff;">LexiStats</a></h1> <span style="font-size:0.85em;color:#8b949e;"><a href="/" style="color:#8b949e">Stats</a> · <a href="/feed" style="color:#8b949e">Live Feed</a> · <b style="color:#c9d1d9">Chooser</b> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Garden ↗</a></span></div>
+        <div style="display:flex;align-items:center;gap:12px;"><h1><a href="/" style="text-decoration:none; color: #58a6ff;">LexiStats</a></h1> <span style="font-size:0.85em;color:#8b949e;"><a href="/" style="color:#8b949e">Stats</a> · <a href="/feed" style="color:#8b949e">Live Feed</a> · <b style="color:#c9d1d9">Chooser</b> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Nick's Garden ↗</a></span></div>
         <span style="font-size:0.8em;color:#8b949e;"><a href="https://linkedtrust.us" style="color:#8b949e;"><img src="https://linkedtrust.us/static/img/logo.523bee24fbc7.svg" alt="" style="height:14px;vertical-align:middle;margin-right:3px;">by LinkedTrust.us</a></span>
     </div>
     <p class="subtitle">Search and discover ATProto lexicons to reuse in your app. Sorted by real usage data from the network.</p>
@@ -1150,6 +1151,7 @@ CHOOSER_HTML = """\
         Powered by <a href="/">LexiStats</a>.
         Data from <a href="https://github.com/bluesky-social/jetstream">Jetstream</a> +
         <a href="https://lexicon.garden">Lexicon Garden</a>.
+        <a href="https://github.com/Cooperation-org/lexistats-api">GitHub</a> |
         By <a href="https://linkedtrust.us">LinkedTrust.us</a>
     </footer>
 
@@ -1428,6 +1430,7 @@ RECORD_VIEW_HTML = """\
     <footer>
         <a href="/feed">Back to feed</a> |
         <a href="/chooser">Lexicon Chooser</a> |
+        <a href="https://github.com/Cooperation-org/lexistats-api">GitHub</a> |
         <a href="https://linkedtrust.us">LinkedTrust.us</a>
     </footer>
 
@@ -1597,6 +1600,8 @@ FEED_HTML = """\
         }
         .pill:hover { border-color: #58a6ff; color: #c9d1d9; }
         .pill.active { background: #1f6feb; border-color: #1f6feb; color: white; }
+        .pill-count { font-size: 0.85em; color: #8b949e; margin-left: 2px; }
+        .pill.active .pill-count { color: rgba(255,255,255,0.7); }
 
         /* Feed — light line-between style */
         .feed { display: flex; flex-direction: column; }
@@ -1728,7 +1733,7 @@ FEED_HTML = """\
 
         /* Load more arrow */
         .load-more {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-350px);
+            position: fixed; bottom: 20px; left: max(10px, calc(50% - 370px));
             z-index: 90;
         }
         .load-more button {
@@ -1740,7 +1745,7 @@ FEED_HTML = """\
         .load-more button:hover { border-color: #3fb950; color: #3fb950; background: #161b22; }
         .load-more button.loading { color: #d29922; border-color: #d29922; cursor: wait; }
         @media (max-width: 750px) {
-            .load-more { left: 16px; transform: none; }
+            .load-more { left: 10px; }
         }
 
         /* Toast notification */
@@ -1755,7 +1760,7 @@ FEED_HTML = """\
 </head>
 <body>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
-        <div style="display:flex;align-items:center;gap:12px;"><h1><a href="/">LexiStats</a></h1> <span style="font-size:0.85em;color:#8b949e;"><a href="/" style="color:#8b949e">Stats</a> · <b style="color:#c9d1d9">Live Feed</b> · <a href="/chooser" style="color:#8b949e">Chooser</a> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Garden ↗</a></span></div>
+        <div style="display:flex;align-items:center;gap:12px;"><h1><a href="/">LexiStats</a></h1> <span style="font-size:0.85em;color:#8b949e;"><a href="/" style="color:#8b949e">Stats</a> · <b style="color:#c9d1d9">Live Feed</b> · <a href="/chooser" style="color:#8b949e">Chooser</a> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Nick's Garden ↗</a></span></div>
         <span style="font-size:0.8em;color:#8b949e;"><a href="https://linkedtrust.us" style="color:#8b949e;"><img src="https://linkedtrust.us/static/img/logo.523bee24fbc7.svg" alt="" style="height:14px;vertical-align:middle;margin-right:3px;">by LinkedTrust.us</a></span>
     </div>
     <p class="subtitle">ATProto records from beyond Bluesky. <span style="color:#3fb950">Comment</span>, <span style="color:#f85149">like</span>, or <span style="color:#a371f7">claim about</span> any record.</p>
@@ -1774,6 +1779,9 @@ FEED_HTML = """\
 
     <div class="filter-bar">
         <input type="text" id="filterInput" placeholder="Filter by NSID, domain, content..." oninput="applyFilterToExisting()">
+        <span style="color:#30363d;margin:0 2px;">|</span>
+        <input type="text" id="uriInput" placeholder="at:// or bsky.app URL" style="max-width:200px;" onkeydown="if(event.key==='Enter'){goToRecord(this.value);this.value='';}">
+        <button class="btn" onclick="goToRecord(document.getElementById('uriInput').value);document.getElementById('uriInput').value='';" style="flex-shrink:0;">View</button>
     </div>
     <div class="pills" id="categoryPills"></div>
 
@@ -1786,7 +1794,8 @@ FEED_HTML = """\
     <div class="feed" id="feed">
         <div class="empty-state" id="emptyState">
             <p>ATProto feed from beyond Bluesky.</p>
-            <p style="margin-top:12px;font-size:0.85em;">Click <b>Connect</b> to start receiving records via Jetstream.<br>Records buffer silently — load them when you're ready.</p>
+            <p style="margin-top:12px;"><button class="btn connect-ready" onclick="toggleConnection()" style="font-size:1em;padding:6px 16px;">Connect</button></p>
+            <p style="margin-top:8px;font-size:0.85em;">Records buffer silently — load them when you're ready.</p>
         </div>
     </div>
 
@@ -1799,6 +1808,7 @@ FEED_HTML = """\
         Schemas from <a href="https://lexicon.garden">Lexicon Garden</a>.
         <a href="/chooser">Chooser</a> |
         <a href="/api/v1/feed/collections">API</a> |
+        <a href="https://github.com/Cooperation-org/lexistats-api">GitHub</a> |
         <a href="https://linkedtrust.us">LinkedTrust.us</a>
     </footer>
 
@@ -1832,15 +1842,15 @@ FEED_HTML = """\
 
     async function init() {
         try {
-            const [metaRes, colRes] = await Promise.all([
-                fetch('/api/v1/lexicon-meta'),
-                fetch('/api/v1/feed/collections')
-            ]);
-            const metaData = await metaRes.json();
-            for (const lex of metaData.lexicons) lexiconMeta[lex.nsid] = lex;
-
+            // Only fetch metadata if not already loaded
+            if (Object.keys(lexiconMeta).length === 0) {
+                const metaRes = await fetch('/api/v1/lexicon-meta');
+                const metaData = await metaRes.json();
+                for (const lex of metaData.lexicons) lexiconMeta[lex.nsid] = lex;
+                buildCategoryPills();
+            }
+            const colRes = await fetch('/api/v1/feed/collections');
             const colData = await colRes.json();
-            buildCategoryPills();
             connectJetstream(colData.collections);
         } catch (e) {
             setStatus('disconnected', 'Failed to load metadata');
@@ -1858,9 +1868,9 @@ FEED_HTML = """\
         }
         const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]);
         const el = document.getElementById('categoryPills');
-        el.innerHTML = '<span class="pill active" onclick="setCategory(null, this)">All</span>' +
+        el.innerHTML = '<span class="pill active" data-cat="all" onclick="setCategory(null, this)">All <span class="pill-count"></span></span>' +
             sorted.map(([cat]) =>
-                '<span class="pill" onclick="setCategory(\\'' + cat + '\\', this)">' + cat + '</span>'
+                '<span class="pill" data-cat="' + cat + '" onclick="setCategory(\\'' + cat + '\\', this)">' + cat + ' <span class="pill-count"></span></span>'
             ).join('');
     }
 
@@ -1967,6 +1977,35 @@ FEED_HTML = """\
         } else {
             pill.classList.remove('visible');
         }
+        updatePillCounts();
+    }
+
+    function updatePillCounts() {
+        // Count from buffer if buffering, otherwise count visible rendered records
+        const cats = {};
+        let total = 0;
+        if (buffer.length > 0) {
+            for (const msg of buffer) {
+                const nsid = msg.commit.collection;
+                const meta = lexiconMeta[nsid] || {};
+                const cat = meta.category || 'other';
+                cats[cat] = (cats[cat] || 0) + 1;
+                total++;
+            }
+        } else {
+            document.querySelectorAll('.record[data-category]').forEach(el => {
+                const cat = el.dataset.category;
+                cats[cat] = (cats[cat] || 0) + 1;
+                total++;
+            });
+        }
+        document.querySelectorAll('.pill[data-cat]').forEach(p => {
+            const cat = p.dataset.cat;
+            const span = p.querySelector('.pill-count');
+            if (!span) return;
+            const c = cat === 'all' ? total : (cats[cat] || 0);
+            span.textContent = c > 0 ? c : '';
+        });
     }
 
     // --- Load buffered records into feed ---
@@ -1978,24 +2017,10 @@ FEED_HTML = """\
         const empty = document.getElementById('emptyState');
         if (empty) empty.remove();
 
-        // Filter buffered events
-        const filter = document.getElementById('filterInput').value.toLowerCase();
-        const toRender = buffer.filter(msg => {
-            const nsid = msg.commit.collection;
-            const meta = lexiconMeta[nsid] || {};
-            const category = meta.category || 'other';
-            if (activeCategory && category !== activeCategory) return false;
-            if (filter) {
-                const searchable = nsid + ' ' + (meta.domain || '') + ' ' + (meta.description || '') + ' ' + JSON.stringify(msg.commit.record);
-                if (!searchable.toLowerCase().includes(filter)) return false;
-            }
-            return true;
-        });
-
-        // Render newest first at top
+        // Render ALL buffered events into DOM (newest first)
         const fragment = document.createDocumentFragment();
-        for (let i = toRender.length - 1; i >= 0; i--) {
-            fragment.appendChild(makeRecord(toRender[i]));
+        for (let i = buffer.length - 1; i >= 0; i--) {
+            fragment.appendChild(makeRecord(buffer[i]));
         }
         feed.insertBefore(fragment, feed.firstChild);
 
@@ -2004,9 +2029,16 @@ FEED_HTML = """\
             feed.removeChild(feed.lastChild);
         }
 
-        // Clear buffer
+        // Clear buffer, update counts from rendered records, then apply current filter
         buffer = [];
         updateNewPill();
+        updatePillCounts();
+        applyFilterToExisting();
+        if (connected) {
+            connected = false;
+            closeSockets();
+            updateConnectBtn();
+        }
     }
 
     function getAuthority(nsid) {
@@ -2038,8 +2070,9 @@ FEED_HTML = """\
         const opClass = commit.operation === 'create' ? 'op-create' : commit.operation === 'update' ? 'op-update' : '';
         const opLabel = commit.operation || 'create';
 
+        const hasCustomRenderer = RENDERERS.some(r => nsid.startsWith(r.match) || nsid === r.match);
         const fieldsHtml = renderContent(commit.record, nsid, did);
-        const lexUrl = meta.lexicon_url || '';
+        const lexUrl = meta.lexicon_url || ('https://lexicon.garden/search?q=' + encodeURIComponent(nsid));
 
         // Best-guess human name for this record (for claim prefill)
         const r = commit.record || {};
@@ -2059,7 +2092,7 @@ FEED_HTML = """\
                     '<span class="record-time"><span class="' + opClass + '">' + esc(opLabel) + '</span> ' + timeStr + '</span>' +
                 '</div>' +
             '</div>' +
-            (meta.description ? '<div class="record-desc">' + esc(meta.description).substring(0, 120) + '</div>' : '') +
+            (!hasCustomRenderer && meta.description ? '<div class="record-desc">' + esc(meta.description).substring(0, 120) + '</div>' : '') +
             '<div class="record-fields">' + fieldsHtml + '</div>' +
             '<div class="record-footer">' +
                 '<span class="record-did"><a href="https://bsky.app/profile/' + esc(did) + '" target="_blank">' + esc(shortDid) + '</a></span>' +
@@ -2075,6 +2108,9 @@ FEED_HTML = """\
                 '<div class="detail-json">' + esc(JSON.stringify(commit.record, null, 2)) + '</div>' +
                 '<div style="margin-top:4px;font-size:0.7em;color:#484f58;">AT URI: <code>' + esc(atUri) + '</code></div>' +
             '</div>';
+
+        // Store record data for comment/action use
+        el._recordData = commit.record;
 
         // Click to expand/collapse detail
         el.addEventListener('click', () => el.classList.toggle('expanded'));
@@ -2310,9 +2346,11 @@ FEED_HTML = """\
     }
 
     function doComment(atUri) {
-        // Open Bluesky compose — for now just text, embed.record needs OAuth
-        const permalink = window.location.origin + '/feed/view?uri=' + encodeURIComponent(atUri);
-        const text = permalink;
+        const el = event.target.closest('.record');
+        const record = el ? el._recordData : null;
+        const title = record ? (record.title || record.name || record.trackName || '') : '';
+        const visibleLink = record ? (record.site && record.path ? record.site + record.path : record.canonicalUrl || record.url || '') : '';
+        const text = (title ? 'About ' + title + ':\\n\\n' : '') + (visibleLink ? visibleLink + '\\n\\n' : '') + atUri;
         window.open('https://bsky.app/intent/compose?text=' + encodeURIComponent(text), '_blank');
     }
 
@@ -2356,8 +2394,41 @@ FEED_HTML = """\
 
     // --- Controls ---
 
+    async function goToRecord(input) {
+        if (!input) return;
+        let atUri = input.trim();
+
+        // Convert bsky.app URL to AT URI
+        const bskyMatch = atUri.match(/bsky\\.app\\/profile\\/([^/]+)\\/post\\/([^/?#]+)/);
+        if (bskyMatch) {
+            let [, handleOrDid, rkey] = bskyMatch;
+            if (!handleOrDid.startsWith('did:')) {
+                try {
+                    const res = await fetch('https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=' + encodeURIComponent(handleOrDid));
+                    const data = await res.json();
+                    handleOrDid = data.did;
+                } catch { showToast('Could not resolve handle'); return; }
+            }
+            atUri = 'at://' + handleOrDid + '/app.bsky.feed.post/' + rkey;
+        }
+
+        if (!atUri.startsWith('at://')) {
+            showToast('Enter an at:// URI or bsky.app URL');
+            return;
+        }
+        window.open('/feed/view?uri=' + encodeURIComponent(atUri), '_blank');
+    }
+
     function clearFeed() {
-        document.getElementById('feed').innerHTML = '<div class="empty-state" id="emptyState">Feed cleared. Records still buffering in background.</div>';
+        document.getElementById('feed').innerHTML = '<div class="empty-state" id="emptyState">Feed cleared.</div>';
+        buffer = [];
+        updateNewPill();
+        updatePillCounts();
+        if (connected) {
+            connected = false;
+            closeSockets();
+            updateConnectBtn();
+        }
     }
 
     // --- Load batch: connect, grab ~20 records, disconnect ---
@@ -2446,6 +2517,12 @@ FEED_HTML = """\
 
         btn.classList.remove('loading');
     }
+
+    // Pre-load metadata so pills show immediately
+    fetch('/api/v1/lexicon-meta').then(r => r.json()).then(data => {
+        for (const lex of data.lexicons) lexiconMeta[lex.nsid] = lex;
+        buildCategoryPills();
+    }).catch(() => {});
     </script>
 </body>
 </html>

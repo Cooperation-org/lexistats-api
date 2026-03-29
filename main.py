@@ -599,7 +599,7 @@ DASHBOARD_HTML = """\
 </head>
 <body>
     <div class="topbar">
-        <div class="topbar-left"><h1>LexiStats</h1> <span style="font-size:0.85em;color:#8b949e;margin-left:12px;"><b style="color:#c9d1d9">Stats</b> · <a href="/feed" style="color:#8b949e">Live Feed</a> · <a href="/chooser" style="color:#8b949e">Chooser</a> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Nick's Garden ↗</a></span></div>
+        <div class="topbar-left"><h1>LexiStats</h1> <span style="font-size:0.85em;color:#8b949e;margin-left:12px;"><b style="color:#c9d1d9">Stats</b> · <a href="/feed" style="color:#8b949e">Live Feed</a> · <a href="/chooser" style="color:#8b949e">Chooser</a> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Nick's Garden ↗</a> · <a href="https://ufos.microcosm.blue/" style="color:#8b949e" target="_blank">🛸 ↗</a></span></div>
         <div class="topbar-right"><a href="https://linkedtrust.us"><img src="https://linkedtrust.us/static/img/logo.523bee24fbc7.svg" alt="">by LinkedTrust.us</a></div>
     </div>
     <p class="subtitle">ATProto Lexicon Usage from Jetstream</p>
@@ -1125,7 +1125,7 @@ CHOOSER_HTML = """\
 </head>
 <body>
     <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div style="display:flex;align-items:center;gap:12px;"><h1><a href="/" style="text-decoration:none; color: #58a6ff;">LexiStats</a></h1> <span style="font-size:0.85em;color:#8b949e;"><a href="/" style="color:#8b949e">Stats</a> · <a href="/feed" style="color:#8b949e">Live Feed</a> · <b style="color:#c9d1d9">Chooser</b> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Nick's Garden ↗</a></span></div>
+        <div style="display:flex;align-items:center;gap:12px;"><h1><a href="/" style="text-decoration:none; color: #58a6ff;">LexiStats</a></h1> <span style="font-size:0.85em;color:#8b949e;"><a href="/" style="color:#8b949e">Stats</a> · <a href="/feed" style="color:#8b949e">Live Feed</a> · <b style="color:#c9d1d9">Chooser</b> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Nick's Garden ↗</a> · <a href="https://ufos.microcosm.blue/" style="color:#8b949e" target="_blank">🛸 ↗</a></span></div>
         <span style="font-size:0.8em;color:#8b949e;"><a href="https://linkedtrust.us" style="color:#8b949e;"><img src="https://linkedtrust.us/static/img/logo.523bee24fbc7.svg" alt="" style="height:14px;vertical-align:middle;margin-right:3px;">by LinkedTrust.us</a></span>
     </div>
     <p class="subtitle">Search and discover ATProto lexicons to reuse in your app. Sorted by real usage data from the network.</p>
@@ -1765,7 +1765,7 @@ FEED_HTML = """\
 </head>
 <body>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
-        <div style="display:flex;align-items:center;gap:12px;"><h1><a href="/">LexiStats</a></h1> <span style="font-size:0.85em;color:#8b949e;"><a href="/" style="color:#8b949e">Stats</a> · <b style="color:#c9d1d9">Live Feed</b> · <a href="/chooser" style="color:#8b949e">Chooser</a> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Nick's Garden ↗</a></span></div>
+        <div style="display:flex;align-items:center;gap:12px;"><h1><a href="/">LexiStats</a></h1> <span style="font-size:0.85em;color:#8b949e;"><a href="/" style="color:#8b949e">Stats</a> · <b style="color:#c9d1d9">Live Feed</b> · <a href="/chooser" style="color:#8b949e">Chooser</a> · <a href="https://lexicon.garden" style="color:#8b949e" target="_blank">Nick's Garden ↗</a> · <a href="https://ufos.microcosm.blue/" style="color:#8b949e" target="_blank">🛸 ↗</a></span></div>
         <span style="font-size:0.8em;color:#8b949e;"><a href="https://linkedtrust.us" style="color:#8b949e;"><img src="https://linkedtrust.us/static/img/logo.523bee24fbc7.svg" alt="" style="height:14px;vertical-align:middle;margin-right:3px;">by LinkedTrust.us</a></span>
     </div>
     <p class="subtitle">ATProto records from beyond Bluesky. <span style="color:#3fb950">Comment</span>, <span style="color:#f85149">like</span>, or <span style="color:#a371f7">claim about</span> any record.</p>

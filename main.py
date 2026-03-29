@@ -1094,11 +1094,18 @@ CHOOSER_HTML = """\
         }
         .card.expanded .card-detail { display: block; }
         .detail-section { margin-bottom: 10px; }
-        .detail-section h4 { color: #c9d1d9; font-size: 0.85em; margin: 0 0 4px 0; }
+        .detail-section h4 { color: #c9d1d9; font-size: 0.85em; margin: 0 0 4px 0; display: flex; align-items: center; gap: 8px; }
+        .copy-btn {
+            font-size: 0.8em; padding: 1px 6px; border-radius: 3px;
+            background: #21262d; border: 1px solid #30363d; color: #8b949e;
+            cursor: pointer;
+        }
+        .copy-btn:hover { border-color: #58a6ff; color: #c9d1d9; }
         .detail-json {
             background: #0d1117; border: 1px solid #30363d; border-radius: 4px;
             padding: 10px; font-family: monospace; font-size: 0.8em;
             overflow-x: auto; max-height: 300px; overflow-y: auto; color: #79c0ff;
+            white-space: pre-wrap; word-break: break-all;
         }
         .detail-fields { display: flex; flex-wrap: wrap; gap: 6px; }
         .field-chip {
@@ -1249,7 +1256,7 @@ CHOOSER_HTML = """\
                 const events = lex.total_events || 0;
                 const firstSeen = lex.first_seen ? new Date(lex.first_seen).toLocaleDateString() : '?';
 
-                return '<div class="card" data-nsid="' + lex.nsid + '" onclick="toggleDetail(this, \\'' + lex.nsid + '\\')">' +
+                return '<div class="card" data-nsid="' + lex.nsid + '" onclick="toggleDetail(this, \\'' + lex.nsid + '\\', event)">' +
                     '<div class="card-header">' +
                         '<div><span class="card-nsid">' + nsidHtml + '</span>' +
                         '<span class="card-domain"> — <a href="https://' + lex.domain + '" target="_blank" rel="noopener">' + lex.domain + '</a></span></div>' +
@@ -1271,7 +1278,8 @@ CHOOSER_HTML = """\
             }
         }
 
-        async function toggleDetail(card, nsid) {
+        async function toggleDetail(card, nsid, ev) {
+            if (ev && ev.target.closest('.card-detail')) return;
             if (card.classList.contains('expanded')) {
                 card.classList.remove('expanded');
                 return;
@@ -1314,12 +1322,12 @@ CHOOSER_HTML = """\
                         html += '</div></div>';
                     }
 
-                    html += '<div class="detail-section"><h4>Schema</h4><div class="detail-json">' +
+                    html += '<div class="detail-section"><h4>Schema <button class="copy-btn" onclick="copyBlock(this)">Copy</button> <button class="copy-btn" onclick="togglePretty(this)">Compact</button></h4><div class="detail-json">' +
                         escHtml(JSON.stringify(data.schema, null, 2)) + '</div></div>';
                 }
 
                 if (data.example_record) {
-                    html += '<div class="detail-section"><h4>Example Record</h4><div class="detail-json">' +
+                    html += '<div class="detail-section"><h4>Example Record <button class="copy-btn" onclick="copyBlock(this)">Copy</button> <button class="copy-btn" onclick="togglePretty(this)">Compact</button></h4><div class="detail-json">' +
                         escHtml(JSON.stringify(data.example_record, null, 2)) + '</div></div>';
                 }
 
@@ -1343,6 +1351,27 @@ CHOOSER_HTML = """\
 
         function escHtml(s) {
             return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        function togglePretty(btn) {
+            const json = btn.closest('.detail-section').querySelector('.detail-json');
+            if (!json) return;
+            try {
+                const obj = JSON.parse(json.textContent);
+                const isPretty = btn.textContent === 'Compact';
+                json.textContent = isPretty ? JSON.stringify(obj) : JSON.stringify(obj, null, 2);
+                btn.textContent = isPretty ? 'Pretty' : 'Compact';
+            } catch {}
+        }
+
+        function copyBlock(btn) {
+            const json = btn.closest('.detail-section').querySelector('.detail-json');
+            if (json) {
+                navigator.clipboard.writeText(json.textContent).then(() => {
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => btn.textContent = 'Copy', 1500);
+                });
+            }
         }
 
         document.getElementById('search').addEventListener('input', renderCards);
